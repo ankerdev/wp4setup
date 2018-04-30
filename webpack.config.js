@@ -4,8 +4,6 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
 
-const mode = process.env.NODE_ENV;
-
 module.exports = {
   devServer: {
     contentBase: '/',
@@ -16,7 +14,6 @@ module.exports = {
     './src/index.js',
     './src/scss/app.scss'
   ],
-  mode: mode,
   module : {
     rules: [
       {
@@ -54,7 +51,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.[hash:12].js',
-    path: __dirname + '/dist',
+    path: path.resolve(__dirname, './dist'),
   },
   plugins: [
     new CleanWebpackPlugin('dist'),
@@ -67,5 +64,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[hash:12].css'
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      Components: path.resolve(__dirname, './src/js/components'),
+      Scenes: path.resolve(__dirname, './src/js/scenes')
+    }
+  }
 };
