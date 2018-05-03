@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --open --mode development",
+    "start": "webpack-dev-server --hot --open --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,7 +14,9 @@
   "dependencies": {
     "dotenv-webpack": "^1.5.5",
     "normalize-scss": "^7.0.1",
-    "react": "^16.3.2"
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-hot-loader": "^4.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^8.4.1",
@@ -31,7 +33,6 @@
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
     "postcss-loader": "^2.1.4",
-    "prop-types": "^15.6.1",
     "react-dom": "^16.3.2",
     "sass-loader": "^6.0.7",
     "webpack": "^4.6.0",
