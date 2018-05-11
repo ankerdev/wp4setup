@@ -7,6 +7,7 @@ const path = require('path');
 module.exports = {
   devServer: {
     contentBase: '/',
+    historyApiFallback: true,
     inline: true,
     port: 2222
   },
