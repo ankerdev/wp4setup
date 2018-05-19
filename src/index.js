@@ -7,6 +7,6 @@ import { Home } from 'Scenes';
 const App = hot(module)(Home);
 
 render(
-  <App />,
+  <App name="Jonas" />,
   document.getElementById('app')
 );
