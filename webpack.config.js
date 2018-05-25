@@ -58,7 +58,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin('dist'),
-    new Dotenv(),
+    new Dotenv(), // Insert environment variables here
     new HTMLWebpackPlugin({
       filename: 'index.html',
       inject: 'body',
