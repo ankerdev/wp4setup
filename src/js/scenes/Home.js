@@ -1,5 +1,5 @@
 import React from 'react';
-import { Country } from 'Components';
+import { Country } from 'components';
 
 export const Home = props => (
   <main className="main flex--down">

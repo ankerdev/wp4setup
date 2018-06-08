@@ -69,9 +69,6 @@ module.exports = {
     })
   ],
   resolve: {
-    alias: {
-      Components: path.resolve(__dirname, './src/js/components'),
-      Scenes: path.resolve(__dirname, './src/js/scenes')
-    }
+    modules: ['node_modules', './src/js']
   }
 };
