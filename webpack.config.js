@@ -20,9 +20,29 @@ module.exports = {
   module : {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: { loader: 'babel-loader' }
+      },
+      {
+        test: /\.svg$/i,
+        rules: [
+          {
+            use: [
+              {
+                loader: 'file-loader',
+                options: {
+                  name: 'assets/[name].[hash:12].[ext]'
+                }
+              }
+            ],
+            issuer: /\.scss$/i,
+          },
+          {
+            use: ['raw-loader'],
+            issuer: /\.(jsx?|html)$/i
+          }
+        ]
       },
       {
         test: /\.scss$/,
@@ -31,21 +51,23 @@ module.exports = {
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
-            options: {
-              importLoaders: 1
-            }
+            options: { importLoaders: 1 }
           },
           'postcss-loader',
-          'sass-loader'
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: true }
+          }
         ]
       },
       {
-        test: /\.(png|jpg|gif|svg|woff|woff2)$/,
+        test: /\.(png|jpg|gif|woff2?)$/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[hash:12].[ext]'
+              name: 'assets/[name].[hash:12].[ext]'
             }
           }
         ]
@@ -55,6 +77,7 @@ module.exports = {
   output: {
     filename: 'bundle.[hash:12].js',
     path: path.resolve(__dirname, './dist'),
+    publicPath: '/'
   },
   plugins: [
     new CleanWebpackPlugin('dist'),
@@ -69,6 +92,7 @@ module.exports = {
     })
   ],
   resolve: {
+    extensions: ['.js', '.jsx'],
     modules: ['node_modules', './src/js']
   }
 };
