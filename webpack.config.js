@@ -40,7 +40,7 @@ module.exports = {
           },
           {
             use: ['raw-loader'],
-            issuer: /\.(jsx?|html)$/i
+            issuer: /\.(html|jsx?)$/i
           }
         ]
       },
@@ -71,8 +71,25 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+            options: {
+              minimize: true,
+              interpolate: true
+            }
+          }
+        ]
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   },
   output: {
     filename: 'bundle.[hash:12].js',
